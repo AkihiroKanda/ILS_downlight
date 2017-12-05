@@ -1,3 +1,3 @@
 # ILS_downlight
 SOEPAで使用するダウンライト用知的照明システムのプログラム（最適化のアルゴリズムには最急降下法を使用）
-scrフォルダのManager.javaクラスを実行
+srcフォルダのManager.javaクラスを実行
