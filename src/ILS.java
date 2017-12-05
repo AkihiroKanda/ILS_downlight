@@ -1,7 +1,7 @@
 
 public class ILS {
 	Light[] light = new Light[InitialValue.LIGHT_NUM];
-	Sensor[] sensor = new Sensor[InitialValue.MAX_SENSOR_NUM];
+	Sensor[] sensor = new Sensor[InitialValue.SENSOR_NUM];
 
 	//lightオブジェクトとsensorオブジェの作成
 	public ILS() {
@@ -14,12 +14,12 @@ public class ILS {
 			sensor[i] = new Sensor(i);		//引数：センサID
 		}
 	}
-	
+
 	//照度センサの追加
 	public void add_newSensor(int x, int y, double LX, double K) {
-		
+
 	}
-	
+
 	//目標照度・色温度の変更
 	public void change_Target(int ID,double LX, double K) {
 		sensor[ID].set_Target_LX(LX);
