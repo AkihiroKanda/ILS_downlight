@@ -5,7 +5,7 @@
 public class InitialValue {
 	//使用機器の数
 	final public static int LIGHT_NUM = 36;								//照明台数
-	public static int SENSOR_NUM = 1;										//センサ台数
+	final public static int MAX_SENSOR_NUM = 10;					//最大センサ台数
 
 	//照明の設定
 	final public static double INITIAL_CD = 300;						//初期点灯光度
