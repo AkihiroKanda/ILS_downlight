@@ -4,22 +4,35 @@
 
 public class InitialValue {
 	//使用機器の数
-	final public static int LIGHT_NUM = 36;								//照明台数
-	final public static int SENSOR_NUM = 5;					//最大センサ台数
+	public final static int LIGHT_NUM = 30;								//照明台数
+	public final static int SENSOR_NUM = 4;								//最大センサ台数
+
+	//模擬オフィスのサイズ
+	public final static double CEILING_HEIGHT = 1.6;				//天井高
 
 	//照明の設定
-	final public static double INITIAL_CD = 300;						//初期点灯光度
-	final public static double MAX_CD = 2000;							//最大点灯光度
-	final public static double MIN_CD = 20;								//最小点灯光度
+	public final static double LIGHT_INTERVAL = 0.6;				//照明の設置間隔
 
-	final public static double INITIAL_K = 4000;						//初期点灯色温度
-	final public static double MAX_K = 6500;								//最大点灯色温度
-	final public static double MIN_K = 2700;								//最小点灯色温度
+	public final static double  INITIAL_CD = 300;						//初期点灯光度
+	public final static double  MAX_CD = 3300;							//最大点灯光度
+	public final static double  MIN_CD = 20;								//最小点灯光度
+
+	public final static double  INITIAL_K = 4000;						//初期点灯色温度
+	public final static double  MAX_K = 6500;							//最大点灯色温度
+	public final static double  MIN_K = 2700;							//最小点灯色温度
 
 	//照度センサの設定
-	final public static int MAX_TARGET_LX = 900;						//目標照度の上限値
-	final public static int MIN_TARGET_LX = 200;						//目標照度の下限値
+	public final static int MAX_TARGET_LX = 900;						//目標照度の上限値
+	public final static int MIN_TARGET_LX = 200;						//目標照度の下限値
 
-	final public static int MAX_TARGET_K = 6000;						//目標色温度の上限値
-	final public static int MIN_TARGET_K = 3000;						//目標色温度の下限値
+	public final static int MAX_TARGET_K = 6000;						//目標色温度の上限値
+	public final static int MIN_TARGET_K = 3000;						//目標色温度の下限値
+
+	//最急降下法
+	public final static int MAX_STEP = 50;									//最大ステップ数
+	public final static double EPS = 0.00001;								//ε：十分に小さな値
+	public final static double TAU = (1+Math.sqrt(5))/2;			//τ：黄金分割法に使用
+
+	//ファイルパス
+	public final static String LDC_path = "./LightDistributionCurve.txt";		//配光曲線のファイルパス
 }
