@@ -46,4 +46,12 @@ public class ILS {
 		SDM.mainSDM_CD(light, sensor);
 		SDM.mainSDM_K(light, sensor);
 	}
+
+	public void show() {
+		for (int i = 0; i < sensor.length; i++) {
+			System.out.println("Target : "+sensor[i].get_Target_LX()
+					+" lx, Current : "+sensor[i].get_Current_LX()+" lx");
+
+		}
+	}
 }

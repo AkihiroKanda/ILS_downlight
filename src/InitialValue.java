@@ -29,9 +29,14 @@ public class InitialValue {
 	public final static int MIN_TARGET_K = 3000;						//目標色温度の下限値
 
 	//最急降下法
-	public final static int MAX_STEP = 50;									//最大ステップ数
+	public final static int MAX_STEP = 500;									//最大ステップ数
 	public final static double EPS = 0.00001;								//ε：十分に小さな値
 	public final static double TAU = (1+Math.sqrt(5))/2;			//τ：黄金分割法に使用
+	public final static double ALPHA = 1;									//消費電力の計算に使うα，とりあえず1に設定
+	public final static double BETA = 1;										//消費電力の計算に使うβ，とりあえず1に設定
+	public final static double WEIGHT = 1;								//目的関数の重み．とりあえず1に設定
+	public final static double INITIAL_X1 = 1;
+	public final static double INITIAL_STEP_SIZE = 0.01;
 
 	//ファイルパス
 	public final static String LDC_path = "./LightDistributionCurve.txt";		//配光曲線のファイルパス

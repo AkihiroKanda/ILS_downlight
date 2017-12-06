@@ -3,6 +3,8 @@ public class Sensor {
 	private int ID;						//センサID
 	private double Target_LX;		//目標照度
 	private double Target_K;		//目標色温度
+	private double Current_LX;	//現在照度
+	private double Current_K;		//現在色温度
 	private double Sensor_X;						//センサのx座標
 	private double Sensor_Y;						//センサのy座標
 
@@ -39,6 +41,20 @@ public class Sensor {
 	}
 	public double  get_Target_K() {
 		return Target_K;
+	}
+
+	//現在照度値・色温度値の格納と取得
+	public void set_Current_LX(double LX){
+		Current_LX = LX;
+	}
+	public double get_Current_LX(){
+		return Current_LX;
+	}
+	public void set_Current_K(double K){
+		Current_K = K;
+	}
+	public double get_Current_K(){
+		return Current_K;
 	}
 
 	//センサ座標の設定と取得
