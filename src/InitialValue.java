@@ -36,7 +36,7 @@ public class InitialValue {
 	public final static double BETA = 1;										//消費電力の計算に使うβ，とりあえず1に設定
 	public final static double WEIGHT = 50;								//目的関数の重み．とりあえず1に設定
 	public final static double INITIAL_X1 = 0;
-	public final static double INITIAL_STEP_SIZE = 0.01;
+	public final static double INITIAL_STEP_SIZE = 1;
 
 	//ファイルパス
 	public final static String LDC_path = "./LightDistributionCurve.txt";		//配光曲線のファイルパス

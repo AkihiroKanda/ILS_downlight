@@ -8,7 +8,6 @@ public class ILS {
 	public ILS() {
 		for (int i = 0; i < light.length; i++) {
 			light[i] = new Light(i);		//引数：照明ID
-			System.out.println("Create Light"+i);
 		}
 
 		for (int i = 0; i < sensor.length; i++) {

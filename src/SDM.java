@@ -19,6 +19,7 @@ public class SDM {
 			Ans_CD = Check_max_min(Calc_next_CD(stepsize, light));
 			for (int i = 0; i < light.length; i++) {
 				light[i].set_CD(Ans_CD[i]);
+				//System.out.println("CD:"+Ans_CD[i]);
 			}			
 			if (step == InitialValue.MAX_STEP) {
 				break;
@@ -57,6 +58,7 @@ public class SDM {
 		//目的関数の各照明の光度に関数偏導関数
 		for(int light_num=0;light_num<InitialValue.LIGHT_NUM;light_num++){
 			Gradient_vector[light_num] = InitialValue.ALPHA + 2 * InitialValue.WEIGHT * RRL[light_num];
+			//System.out.println("Gradient_vector:"+Gradient_vector[light_num]);
 		}
 	}
 
@@ -73,14 +75,15 @@ public class SDM {
 		double TAU = InitialValue.TAU;
 		double x1 = InitialValue.INITIAL_X1;
 		double x2 = x1 + h;
-		double x3 = x1 + ((TAU-1)/2) * (x2 - x1);
+		double x3 = x1 + ((TAU-1)/TAU) * (x2 - x1);
 		double x4 = x1 + (1/TAU) * (x2 - x1);
 		double func1 = 0.0;
 		double func2 = 0.0;
 
-		while((x2-x1)<InitialValue.EPS){
+		while((x2-x1)>InitialValue.EPS){
 			func1 = Calc_function_value(x3, light, sensor);
 			func2 = Calc_function_value(x4, light, sensor);
+			System.out.println("Function1:"+func1+",Function2:"+func2);
 			if(func1>func2){
 				x1 = x3;
 				//x2 = x2;
@@ -94,6 +97,7 @@ public class SDM {
 				x4 = x1 + (1/TAU) * (x2 - x1);
 			}
 		}
+		System.out.println(x3);
 		return x3;
 	}
 
@@ -133,10 +137,10 @@ public class SDM {
 	//光度値の最小値最大値のチェック
 	private static double[] Check_max_min(double nextCD[]){
 		for(int i=0;i<InitialValue.LIGHT_NUM;i++){
-			if(nextCD[i] < InitialValue.MAX_CD){
+			if(nextCD[i] > InitialValue.MAX_CD){
 				nextCD[i] = InitialValue.MAX_CD;
 			}
-			else if(nextCD[i] > InitialValue.MIN_CD){
+			else if(nextCD[i] < InitialValue.MIN_CD){
 				nextCD[i] = InitialValue.MIN_CD;
 			}
 		}
