@@ -8,8 +8,8 @@ public class Manager {
 		//send_signal_to_server(sgnal_cd,signal_k); //信号値を調光用サーバへ送信
 
 		//各センサの目標照度・色温度の設定
-		ils.add_newSensor(0.6, 0.3, 500, 4000);
-		ils.add_newSensor(0.6, 1.8, 700, 6000);
+		ils.add_newSensor(0.6, 0.3, 200, 4000);
+		ils.add_newSensor(0.6, 1.8, 900, 6000);
 		ils.add_newSensor(2.7, 0.3, 300, 3000);
 		ils.add_newSensor(2.1, 2.1, 400, 5000);
 

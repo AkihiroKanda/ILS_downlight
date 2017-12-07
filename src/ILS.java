@@ -12,7 +12,7 @@ public class ILS {
 
 		for (int i = 0; i < sensor.length; i++) {
 			sensor[i] = new Sensor(i);		//引数：センサID
-		}
+		}		
 	}
 
 	//照度センサの追加
@@ -54,7 +54,7 @@ public class ILS {
 			System.out.println("Target LX : "+Math.round(sensor[i].get_Target_LX())
 					+" lx, Current LX : "+Math.round(sensor[i].get_Current_LX())+" lx");
 			System.out.println("Target K : "+Math.round(sensor[i].get_Target_K())
-					+" lx, Current K : "+Math.round(sensor[i].get_Current_K())+" lx");
+					+" K, Current K : "+Math.round(sensor[i].get_Current_K())+" K");
 			System.out.println("============================");
 		}
 	}
