@@ -63,7 +63,7 @@ public class SDM {
 	//降下方向の計算
 	private static void Calc_drop_direction(){
 		for(int light_num=0;light_num<InitialValue.LIGHT_NUM;light_num++){
-			Drop_direction[light_num] = -1.0 * Gradient_vector[light_num];
+			Drop_direction[light_num] = -1 * Gradient_vector[light_num];
 		}
 	}
 
