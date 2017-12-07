@@ -49,7 +49,7 @@ public class Point_method {
 
                 //影響度係数の計算
                 light[lnum].set_Influence_deg(snum, ill / InitialValue.MAX_CD);
-                System.out.println("Influence degree(Light ID:" +lnum+", SensorID:"+snum+"):"+ light[lnum].get_Influence_deg(snum));
+                //System.out.println("Influence degree(Light ID:" +lnum+", SensorID:"+snum+"):"+ light[lnum].get_Influence_deg(snum));
 //                influence[lnum][snum] = ill / InitialValue.MAX_CD;
 //                System.out.println("影響度係数：" + influence[lnum][snum]);
             }

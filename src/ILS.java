@@ -1,4 +1,3 @@
-
 public class ILS {
 	Light[] light = new Light[InitialValue.LIGHT_NUM];
 	Sensor[] sensor = new Sensor[InitialValue.SENSOR_NUM];
@@ -46,9 +45,9 @@ public class ILS {
 		SDM.mainSDM_K(light, sensor);
 	}
 	
-	//表示
-	public void show() {
-		System.out.println("============================");
+	//表示(センサ)
+	public void show_Sensor() {
+		System.out.println("==============================");
 		for (int i = 0; i < sensor.length; i++) {
 			System.out.println("Sensor"+(sensor[i].get_ID()+1));
 			System.out.println("Target LX : "+Math.round(sensor[i].get_Target_LX())
@@ -56,6 +55,31 @@ public class ILS {
 			System.out.println("Target K : "+Math.round(sensor[i].get_Target_K())
 					+" K, Current K : "+Math.round(sensor[i].get_Current_K())+" K");
 			System.out.println("============================");
+		}
+	}
+	//表示（ライト）
+	public void show_Light() {
+		System.out.println("===============================================");
+		for (int i = 0; i < light.length/6; i++) {
+			System.out.println("Light"+(light[i].get_ID()+1)
+					+"			Light"+(light[i+5].get_ID()+1)
+					+"			Light"+(light[i+10].get_ID()+1)
+					+"			Light"+(light[i+15].get_ID()+1)
+					+"			Light"+(light[i+20].get_ID()+1)
+					+"			Light"+(light[i+25].get_ID()+1));
+			System.out.println(Math.round(light[i].get_CD())+" cd"
+					+"			"+Math.round(light[i+5].get_CD())+" cd"
+					+"			"+Math.round(light[i+10].get_CD())+" cd"
+					+"			"+Math.round(light[i+15].get_CD())+" cd"
+					+"			"+Math.round(light[i+20].get_CD())+" cd"
+					+"			"+Math.round(light[i+25].get_CD())+" cd");
+			System.out.println(Math.round(light[i].get_K())+" K"
+					+"			"+Math.round(light[i+5].get_K())+" K"
+					+"			"+Math.round(light[i+10].get_K())+" K"
+					+"			"+Math.round(light[i+15].get_K())+" K"
+					+"			"+Math.round(light[i+20].get_K())+" K"
+					+"			"+Math.round(light[i+25].get_K())+" K");
+			System.out.println("===============================================");
 		}
 	}
 }
