@@ -3,6 +3,7 @@ public class Light {
 	private int ID;			//照明ID
 	private double CD = InitialValue.INITIAL_CD;		//光度
 	private double K = InitialValue.INITIAL_K;			//色温度
+	private double M = 1000000/InitialValue.INITIAL_K;		//ミレッド値
 	private double Light_X;											//照明のx座標
 	private double Light_Y;												//照明のy座標
 	private double[] Influence_deg = new double[InitialValue.SENSOR_NUM];		//各センサの影響度を格納する配列
@@ -38,9 +39,19 @@ public class Light {
 	//色温度設定と取得
 	public void set_K(double K) {			//設定
 		this.K = K;
+		M = 1000000 / CD;
 	}
 	public double get_K() {					//取得
 		return K;
+	}
+
+	//ミレッドの設定と取得
+	public void set_M(double M){
+		this.M = M;
+		K = 1000000 / M;
+	}
+	public double get_M(){
+		return M;
 	}
 
 	//影響度係数の設定と取得

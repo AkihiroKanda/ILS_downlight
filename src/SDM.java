@@ -20,7 +20,8 @@ public class SDM {
 			for (int i = 0; i < light.length; i++) {
 				light[i].set_CD(Ans_CD[i]);
 				//System.out.println("CD:"+Ans_CD[i]);
-			}			
+			}
+			Calc_current_LX(light, sensor);		//求めた光度値での各照度センサの現在照度の計算
 			if (step == InitialValue.MAX_STEP) {
 				break;
 			}
@@ -29,7 +30,21 @@ public class SDM {
 
 	//色温度の最適化
 	public static void mainSDM_K(Light light[], Sensor sensor[]) {
-
+		Initialization();			//初期化
+		while (true) {
+			step++;
+			Calc_gradient_vector(light, sensor);		//勾配ベクトルの計算
+			Calc_drop_direction();							//降下方向の計算
+			stepsize = Calc_stepsize(light, sensor);	//ステップ幅αの計算
+			Ans_CD = Check_max_min(Calc_next_CD(stepsize, light));
+			for (int i = 0; i < light.length; i++) {
+				light[i].set_CD(Ans_CD[i]);
+				//System.out.println("CD:"+Ans_CD[i]);
+			}			
+			if (step == InitialValue.MAX_STEP) {
+				break;
+			}
+		}
 	}
 
 	//初期化
@@ -37,17 +52,27 @@ public class SDM {
 		step = 0;
 		stepsize = 0.0;
 	}
+	
+	//照度センサの現在照度の計算
+	public static void Calc_current_LX(Light light[], Sensor sensor[]) {
+		for(int sensor_num=0;sensor_num<InitialValue.SENSOR_NUM;sensor_num++){
+			for(int light_num=0;light_num<InitialValue.LIGHT_NUM;light_num++){
+				sensor[sensor_num].set_Each_Current_LX(light_num, 
+						light[light_num].get_Influence_deg(sensor_num) * light[light_num].get_CD());
+			}
+		}
+	}
 
 	//勾配ベクトルの計算
 	private static void Calc_gradient_vector(Light light[], Sensor sensor[]){
 		double[] RRL = new double[InitialValue.LIGHT_NUM];		//偏微分値を格納する配列
 		//各センサの現在照度を計算
-		for(int sensor_num=0;sensor_num<InitialValue.SENSOR_NUM;sensor_num++){
-			double sum_LX = 0;
+/*		for(int sensor_num=0;sensor_num<InitialValue.SENSOR_NUM;sensor_num++){
 			for(int light_num=0;light_num<InitialValue.LIGHT_NUM;light_num++){
-				sum_LX += light[light_num].get_Influence_deg(sensor_num) * light[light_num].get_CD();
-			}sensor[sensor_num].set_Current_LX(sum_LX);
-		}
+				sensor[sensor_num].set_Each_Current_LX(light_num, 
+						light[light_num].get_Influence_deg(sensor_num) * light[light_num].get_CD());
+			}
+		}*/
 		//照度に関数る制約条件項の光度による偏微分値
 		for(int light_num=0;light_num<InitialValue.LIGHT_NUM;light_num++){
 			for(int sensor_num=0;sensor_num<InitialValue.SENSOR_NUM;sensor_num++){
@@ -83,21 +108,21 @@ public class SDM {
 		while((x2-x1)>InitialValue.EPS){
 			func1 = Calc_function_value(x3, light, sensor);
 			func2 = Calc_function_value(x4, light, sensor);
-			System.out.println("Function1:"+func1+",Function2:"+func2);
+			//System.out.println("Function1:"+func1+",Function2:"+func2);
 			if(func1>func2){
 				x1 = x3;
 				//x2 = x2;
-				x3 = x1 + ((TAU-1)/2) * (x2 - x1);
+				x3 = x1 + ((TAU-1)/TAU) * (x2 - x1);
 				x4 = x1 + (1/TAU) * (x2 - x1);
 			}
 			else{
 				//x1 = x1;
 				x2 = x4;
-				x3 = x1 + ((TAU-1)/2) * (x2 - x1);
+				x3 = x1 + ((TAU-1)/TAU) * (x2 - x1);
 				x4 = x1 + (1/TAU) * (x2 - x1);
 			}
 		}
-		System.out.println(x3);
+		//System.out.println(x3);
 		return x3;
 	}
 

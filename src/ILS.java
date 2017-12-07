@@ -45,12 +45,17 @@ public class ILS {
 		SDM.mainSDM_CD(light, sensor);
 		SDM.mainSDM_K(light, sensor);
 	}
-
+	
+	//表示
 	public void show() {
+		System.out.println("============================");
 		for (int i = 0; i < sensor.length; i++) {
-			System.out.println("Target : "+sensor[i].get_Target_LX()
-					+" lx, Current : "+sensor[i].get_Current_LX()+" lx");
-
+			System.out.println("Sensor"+(sensor[i].get_ID()+1));
+			System.out.println("Target LX : "+Math.round(sensor[i].get_Target_LX())
+					+" lx, Current LX : "+Math.round(sensor[i].get_Current_LX())+" lx");
+			System.out.println("Target K : "+Math.round(sensor[i].get_Target_K())
+					+" lx, Current K : "+Math.round(sensor[i].get_Current_K())+" lx");
+			System.out.println("============================");
 		}
 	}
 }

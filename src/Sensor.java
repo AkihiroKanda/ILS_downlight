@@ -7,6 +7,8 @@ public class Sensor {
 	private double Current_K;		//現在色温度
 	private double Sensor_X;						//センサのx座標
 	private double Sensor_Y;						//センサのy座標
+	private double[] Each_LX = new double[InitialValue.LIGHT_NUM];		//照明ごとの照度
+
 
 	public Sensor(int ID) {
 		this.ID = ID;
@@ -48,6 +50,10 @@ public class Sensor {
 		Current_LX = LX;
 	}
 	public double get_Current_LX(){
+		Current_LX = 0;
+		for (int i = 0; i < Each_LX.length; i++) {
+			Current_LX += Each_LX[i];
+		}
 		return Current_LX;
 	}
 	public void set_Current_K(double K){
@@ -55,6 +61,17 @@ public class Sensor {
 	}
 	public double get_Current_K(){
 		return Current_K;
+	}
+	
+	//各照明から提供される照度
+	public void set_Each_Current_LX(int light_ID, double LX){
+		Each_LX[light_ID] = LX;
+	}
+	public double get_Each_Current_LX(int light_ID){
+		return Each_LX[light_ID];
+	}
+	public double[] get_Each_Current_LX(){
+		return Each_LX;
 	}
 
 	//センサ座標の設定と取得
