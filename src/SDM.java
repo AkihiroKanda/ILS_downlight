@@ -44,7 +44,7 @@ public class SDM {
 			Ans_M =  Check_max_min(Calc_next_value(stepsize, light));
 			for (int i = 0; i < light.length; i++) {
 				light[i].set_M(Ans_M[i]);
-				//System.out.println("CD:"+Ans_CD[i]);
+				//System.out.println("M:"+Ans_M[i]);
 			}
 			Calc_current_M(light, sensor);
 			if (step == InitialValue.MAX_STEP) {
@@ -220,6 +220,9 @@ public class SDM {
 			else if (Design_variable == "M"){
 				if (nextValue[i] < InitialValue.MAX_M) nextValue[i] = InitialValue.MAX_M;
 				else if (nextValue[i] > InitialValue.MIN_M) nextValue[i] = InitialValue.MIN_M;
+			}
+			else{
+				System.err.println("ERROR!!!");
 			}
 		}
 		return nextValue;

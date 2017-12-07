@@ -7,7 +7,9 @@ public class Light {
 	private double Light_X;											//照明のx座標
 	private double Light_Y;												//照明のy座標
 	private double[] Influence_deg = new double[InitialValue.SENSOR_NUM];		//各センサの影響度を格納する配列
-
+	private int Signal_Cd = 0;				//ソケット通信時のCdの信号値（10進数）
+	private int Signal_K = 4000;				//ソケット通信時のKの値
+	private int SignalKNum =  0;				//ソケット通信時のKの信号値（10進数）
 	public Light(int ID) {
 		this.ID = ID;
 		//照明の座標設定
@@ -61,4 +63,16 @@ public class Light {
 	public double get_Influence_deg(int sensorID){
 		return Influence_deg[sensorID];
 	}
+
+	//Dimmerで使用する信号値に適した照明の色温度
+	public void set_Signal_Cd(int Signal_Cd){this.Signal_Cd= Signal_Cd;}
+	public int get_Signal_Cd(){return Signal_Cd;}
+
+	//Dimmerで使用する信号値に適した照明の色温度
+	public void set_Signal_K(int Signal_K){this.Signal_K = Signal_K;}
+	public int get_Signal_K(){return Signal_K;}
+
+	//Dimmerで使用する信号値に適した照明の色温度
+	public void set_SignalKNum(int SignalKNum){this.SignalKNum = SignalKNum;}
+	public int get_SignalKNum(){return SignalKNum;}
 }
